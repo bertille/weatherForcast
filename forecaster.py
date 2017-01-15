@@ -7,7 +7,7 @@ MYKEY="2914e9db205477351929329d6eae4772"
 URI="/data/2.5/weather?q="
 HOSTNAME="api.openweathermap.org"
 
-class Forcaster:
+class Forecaster:
 	def __init__(self, city):
 		self.city = city
 
@@ -29,5 +29,5 @@ class Forcaster:
 			connection.close()
 
 
-forcastGVA = Forcaster("Paris")
-forcastGVA.search()
+forecastGVA = Forecaster("Paris")
+forecastGVA.search()
