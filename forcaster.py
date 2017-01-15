@@ -11,7 +11,7 @@ class Forcaster:
 	def __init__(self, city):
 		self.city = city
 
-	def searchForcast(self):
+	def search(self):
 		connection = httplib.HTTPConnection(HOSTNAME)
 
 		URL = URI + self.city + '&APPID=' + MYKEY + '&mode=xml' 
@@ -19,11 +19,15 @@ class Forcaster:
 		connection.request("GET", URL)
 		response = connection.getresponse()
 		data = response.read()
+	
+		if response.status == 200:
+			print(data)
+			return data
+			connection.close()
+		else:
+			print(response)
+			connection.close()
 
-		print response.status
-		print data
-
-		connection.close()
 
 forcastGVA = Forcaster("Paris")
-forcastGVA.searchForcast()
+forcastGVA.search()
