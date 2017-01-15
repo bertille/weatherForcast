@@ -4,7 +4,7 @@ import os
 import httplib
 
 MYKEY="2914e9db205477351929329d6eae4772"
-URI="/data/2.5/weather?q=Geneva"
+URI="/data/2.5/weather?q=Geneve"
 URL=URI+'&APPID='+MYKEY+'&mode=xml'
 
 
