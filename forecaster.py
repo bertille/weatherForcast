@@ -30,9 +30,11 @@ class Forecaster:
 			print(response)
 			connection.close()
 
+	def setComment(self):
+		self.comment=comment
 
 	def getComment(self):
-		return sefl.comment
+		return self.comment
 
 
 	# Search for a array of city
