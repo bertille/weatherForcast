@@ -6,15 +6,16 @@ import httplib
 MYKEY="2914e9db205477351929329d6eae4772"
 URI="/data/2.5/weather?q="
 HOSTNAME="api.openweathermap.org"
+mycities = ['Paris','Barcelone','Prague']
 
 
 class Forecaster:
-	def __init__(self, city):
-		self.city = city
+	def __init__(self, comment):
+		self.comment=comment
 
-	def search(self):
+	def searchCity(self, city):
 		connection=httplib.HTTPConnection(HOSTNAME)
-		CITY=self.city
+		CITY=city
 		URL=URI+CITY+'&APPID='+MYKEY+'&mode=xml'
 
 		connection.request("GET", URL)
@@ -29,8 +30,23 @@ class Forecaster:
 			print(response)
 			connection.close()
 
-	def getCity(self):
-		return self.city
 
-forecastGVA=Forecaster("Paris")
-forecastGVA.search()
+	def getComment(self):
+		return sefl.comment
+
+
+	# Search for a array of city
+	def searchCities(self,cities):
+		if len(cities) > 0:	
+			for city in cities:
+				self.searchCity(city)
+		else:
+			print "No cities to process"
+			return
+
+
+forecastGVA=Forecaster("Prévision pour Paris")
+forecastGVA.searchCity("Paris")
+
+forecastGLOBAL=Forecaster("Prevision pour trois villes d'Europe")
+forecastGLOBAL.searchCities('mycities')
