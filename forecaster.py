@@ -13,9 +13,9 @@ class Forecaster:
 	def __init__(self, comment):
 		self.comment=comment
 
-	def searchCity(self, city):
+	def searchCity(self, city, mode):
 		connection=httplib.HTTPConnection(HOSTNAME)
-		URL=URI+city+'&APPID='+MYKEY+'&mode=xml'
+		URL=URI+city+'&APPID='+MYKEY+'&mode='+mode
 
 		connection.request("GET", URL)
 		response=connection.getresponse()
@@ -37,20 +37,17 @@ class Forecaster:
 
 
 	# Search for a array of city
-	def searchCities(self,cities):
+	def searchCities(self,cities, mode):
 		if len(cities) > 0:	
 			for city in cities:
-				self.searchCity(city)
+				self.searchCity(city, mode)
 		else:
 			print "No cities to process"
 			return
 
-	def rawXmlToArray(self,file):
 
-
-
-forecastGVA=Forecaster("Prévision pour Paris")
-forecastGVA.searchCity("Paris")
+forecastGVA=Forecaster("Prevision pour Paris")
+forecastGVA.searchCity("Paris","xml")
 
 forecastGLOBAL=Forecaster("Prevision pour trois villes d'Europe")
-forecastGLOBAL.searchCities('mycities')
+forecastGLOBAL.searchCities('mycities',"xml")
