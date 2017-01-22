@@ -8,7 +8,6 @@ URI="/data/2.5/weather?q="
 HOSTNAME="api.openweathermap.org"
 mycities = ['Paris','Barcelone','Prague']
 
-
 class Forecaster:
 	def __init__(self, comment):
 		self.comment=comment
@@ -38,16 +37,18 @@ class Forecaster:
 
 	# Search for a array of city
 	def searchCities(self,cities, mode):
-		if len(cities) > 0:	
-			for city in cities:
-				self.searchCity(city, mode)
+		if len(cities) > 0:
+			i=0 
+			while i < len(cities):
+				self.searchCity(cities[i], mode)
+				i += 1
 		else:
 			print "No cities to process"
 			return
 
 
-forecastGVA=Forecaster("Prevision pour Paris")
-forecastGVA.searchCity("Paris","xml")
+#forecastGVA=Forecaster("Prevision pour Paris")
+#forecastGVA.searchCity("Paris","xml")
 
 forecastGLOBAL=Forecaster("Prevision pour trois villes d'Europe")
-forecastGLOBAL.searchCities('mycities',"xml")
+forecastGLOBAL.searchCities(mycities,"xml")
