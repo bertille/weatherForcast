@@ -15,8 +15,7 @@ class Forecaster:
 
 	def searchCity(self, city):
 		connection=httplib.HTTPConnection(HOSTNAME)
-		CITY=city
-		URL=URI+CITY+'&APPID='+MYKEY+'&mode=xml'
+		URL=URI+city+'&APPID='+MYKEY+'&mode=xml'
 
 		connection.request("GET", URL)
 		response=connection.getresponse()
@@ -27,7 +26,7 @@ class Forecaster:
 			return data
 			connection.close()
 		else:
-			print(response)
+			print "Something went wrong"
 			connection.close()
 
 	def setComment(self):
@@ -45,6 +44,9 @@ class Forecaster:
 		else:
 			print "No cities to process"
 			return
+
+	def rawXmlToArray(self,file):
+
 
 
 forecastGVA=Forecaster("Prévision pour Paris")
